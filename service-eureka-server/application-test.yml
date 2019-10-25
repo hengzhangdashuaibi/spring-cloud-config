@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: eureka-server
+#  profiles:
+#    active: pro
+server:
+  port: 8761
+  boot:
+    admin:
+      client:
+        url: http://127.0.0.1:7086
+eureka:
+  server:
+    enable-self-preservation: true
+    eviction-interval-timer-in-ms: 3000
+  instance:
+    hostname: 127.0.0.1
+    lease-renewal-interval-in-seconds: 1
+    lease-expiration-duration-in-seconds: 3
+    prefer-ip-address: true
+    instance-id : 172.16.19.6:${spring.application.name}:${server.port}:@project.version@
+    status-page-url: http://127.0.0.1:8761/swagger-ui.html
+  client:
+    register-with-eureka: false
+    fetchRegistry: false
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka
+
+#  main:
+#    allow-bean-definition-overriding: true
